@@ -1,0 +1,194 @@
+.canvas {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(249,248,254);
+    background: linear-gradient(90deg, rgba(249,248,254,1) 0%, rgba(198,198,240,1) 35%, rgba(97,212,236,1) 100%);
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .wrapper {
+    min-height: 80vh;
+    width: 800px;
+    background-color:rgba(243, 243, 243, 0.559);
+    border-radius: 30px;
+    display: flex;
+    overflow: hidden; 
+  }
+  
+  .images {
+    flex: 1;
+    overflow:hidden;
+    width: 400px;
+   
+
+  }
+  .wrapper .images img {
+    height: 100%;
+  overflow:hidden;
+    object-fit: cover;
+    border-radius: 30px 0 0 30px;
+
+  }
+
+  
+  .form-wrapper
+  {
+    display: flex ;
+    margin-left: 5px;
+    width: 400px;
+    min-height: 80vh;
+    
+    overflow: hidden;
+
+  }
+
+
+  .form-container {
+    justify-content: center;
+    position: relative;
+    padding: 30px 10px 10px 10px;
+    transition: 0.5s ;;
+   
+  }
+  
+  .form-field {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    font-weight: bold;
+    color: #7e7e7e;
+    font-size: medium;
+    margin-bottom: 2px;
+  }
+  
+  .input-fields {
+    height: 30px;
+    border-radius: 5px;
+    padding: 3px 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    width: 350px;
+    
+  }
+  .input-fields:focus{
+    border-color: lightskyblue;
+  }
+  
+  
+  #submit-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button {
+    width: 100%;
+    height: 40px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Gender selectiong design */ 
+  .radio-group {
+    display: flex; /* Display items in a row */
+    align-items: center; /* Vertically center items */
+  }
+  
+  .radio-label {
+    display: flex; /* Display label and input in a row */
+    align-items: center; /* Vertically center label and input */
+    margin-right: 20px; /* Add some spacing between radio options */
+  }
+  
+  /* Additional styling for radio buttons and labels */
+  .radio {
+    /* Your radio button styles here */
+
+  }
+  
+  .gender-male,
+  .gender-female {
+    margin-left: 10px ;
+    padding: 5px;
+  }
+  
+    /* Gender selectiong design  close */ 
+
+
+  /* Un used kept it temporary  
+
+  #checkbox-field {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  #checkbox-field input {
+    width: 20px;
+    height: 20px;
+  }
+  #radio-field {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #radio-field div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+  }
+  #radio-field input {
+    width: 20px;
+    height: 20px;
+  }
+  button:hover {
+    background-color: #1a211a;
+    color: white ;
+  }
+  .labals {
+    font-size: 2.3rem;
+  }
+  */ 
+
+.slct{
+  width: 150px ;
+  margin-left: 50px;
+  text-align: center;
+  padding: 5px ;
+}
+
+
+
+
+  /* form Page   */
+ #form-1{
+  left: 10px ;
+
+ }
+ #form-2{
+  left: 350px ;
+ }
+ 
+ #form-3{
+  left: 450px ;
+ }
+ 

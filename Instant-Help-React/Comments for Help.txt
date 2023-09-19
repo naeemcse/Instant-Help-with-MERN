@@ -1,0 +1,6 @@
+I am using Vite  for React 
+Using Tailwind CSS
+used Deisy UI 
+
+install : React Router DOM 
+
