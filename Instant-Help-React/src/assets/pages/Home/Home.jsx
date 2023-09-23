@@ -15,12 +15,9 @@ const Home = () => {
       <div className="home">
        
         {/* Nav var  End  */}
-        <Search />
-   
+         <Search /> 
 
       </div>
-      
-    loc
      
     </Layout>
 

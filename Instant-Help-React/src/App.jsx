@@ -8,6 +8,8 @@ import Footer from './assets/components/footer/footer'
 import NotFound from "./assets/components/NotFound";
 import Form from "./assets/pages/form/Form";
 import Login from "./assets/pages/login/Login";
+import Demo from "./assets/pages/Demo/Demo";
+//import TestSearch from "./assets/pages/TestSearch/testSearch";
 
 
 
@@ -25,7 +27,9 @@ function App() {
 
         <Route path="*" element={<NotFound/>}/>
         <Route path="/post" element={<Form/>}/>
-
+      <Route path="/demo" element={<Demo/>} />
+        
+         
           
    </Routes>
    </BrowserRouter>
