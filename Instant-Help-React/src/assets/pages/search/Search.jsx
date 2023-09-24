@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { Typewriter } from 'react-simple-typewriter'
 import "./search.css";
 import PersonList from "../../components/personList/PersonList";
 
@@ -349,9 +350,23 @@ const Search = () => {
 
   return (
     <div>
-      <h2 className="text-2xl text-center py-10">
-        Select Yout Location for finding Your Necessary People{" "}
+      
+      <div className="flex items-center justify-center">
+      <h2 className="text-2xl text-center py-10 font-bold">
+        Select Your Location for{' '}
+        <span className="flex">
+          <Typewriter
+            words={[' Finding Your Necessary People']}
+            loop={5}
+            cursor
+            cursorStyle="_"
+            typeSpeed={70}
+            deleteSpeed={100}
+            delaySpeed={3000}
+          />
+        </span>
       </h2>
+    </div>
 
       <div className="location bg-fuchsia-50 w-1/2 rounded-2xl p-10 m-auto">
         <form action="" id="form-location" method="GET">

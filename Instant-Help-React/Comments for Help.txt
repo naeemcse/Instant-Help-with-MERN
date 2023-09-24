@@ -4,3 +4,7 @@ used Deisy UI
 
 install : React Router DOM 
 
+1. 
+Typewritter Animation for text . 
+Github Link is : https://github.com/awran5/react-simple-typewriter 
+Here is full documentation 

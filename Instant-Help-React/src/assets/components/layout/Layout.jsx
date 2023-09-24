@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Footer from "../footer/footer";
+import { Typewriter } from 'react-simple-typewriter'
 
 import "./layout.css";
 
@@ -49,12 +50,24 @@ const Layout = (props) => {
           <div className="middle-nav">
             <Link to="/post"> <button className="btn btn-success">
             
-              Post Your Service
+              Post Your Service 
             </button> </Link>
           </div>
         </div>
         <div className="navbar-center">
-          <a className="btn btn-ghost normal-case text-xl"> Instant Help </a>
+          <a className="btn btn-ghost normal-case text-xl">
+            
+             <Typewriter
+            words={['Instant Help ',' Find The People , Solve The Problem ']}
+            loop={100}
+            cursor
+            cursorStyle=''
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+            
+          />
+              </a>
         </div>
 
         <div className="navbar-end">
