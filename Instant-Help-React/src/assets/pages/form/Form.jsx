@@ -9,13 +9,13 @@ const Form = () => {
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
   const [facebookId, setFacebookId] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState('2023-09-14');
   const [selectedGender, setSelectedGender] = useState("Male");
   const [divisionName, setDivisionName] = useState("");
   const [zillaName,setZillaName] = useState(""); 
   const [upZillaName,setUpZillaName] = useState(""); 
   const [profession,setProfession] = useState("");
-  const [experienceDate,setExperienceDate] = useState("") ;
+  const [experienceDate,setExperienceDate] = useState('2023-09-14') ;
   const [details,setDetails] = useState("") ;
  
 const [password,setPassword] = useState("") ;

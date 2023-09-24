@@ -1,44 +1,38 @@
-
 import { useEffect } from "react";
 import { useState } from "react";
 import "./search.css";
-
+import PersonList from "../../components/personList/PersonList";
 
 const Search = () => {
-const [person,setPerson] = useState([]);
-const [divisionName, setDivisionName] = useState("");
-const [zillaName,setZillaName] = useState(""); 
-const [upZillaName,setUpZillaName] = useState(""); 
-const [profession,setProfession] = useState("");
+  const [person, setPerson] = useState([]);
+  const [divisionName, setDivisionName] = useState("");
+  const [zillaName, setZillaName] = useState("");
+  const [upZillaName, setUpZillaName] = useState("");
+  const [profession, setProfession] = useState("");
 
-  
-  // Here is a functin of onChange of divisin Select , here i set the useState of division Name and updated the districts Name for division wise 
+  // Here is a functin of onChange of divisin Select , here i set the useState of division Name and updated the districts Name for division wise
   const selecedDivision = (e) => {
     setDivisionName(e.target.value);
     setDistrictList();
   };
 
-  // Here is a functin of onChange of districts Select , here i set the useState of  districtsName and updated the UpzillaName for districts wise 
+  // Here is a functin of onChange of districts Select , here i set the useState of  districtsName and updated the UpzillaName for districts wise
 
- 
-  const selectedZilla = (e)=>{
-    setZillaName(e.target.value) ;
-    setUpzillaList () ;
+  const selectedZilla = (e) => {
+    setZillaName(e.target.value);
+    setUpzillaList();
+  };
 
-  }
+  // Here is a functin of onChange of upzilla Select , here i set the useState of  upzillaName
 
-  // Here is a functin of onChange of upzilla Select , here i set the useState of  upzillaName 
- 
-  const selectedUpZilla = (e)=>{
-    setUpZillaName(e.target.value) ;    
-  }
+  const selectedUpZilla = (e) => {
+    setUpZillaName(e.target.value);
+  };
 
-
- 
-// This functon set the district list for division wise 
-  const setDistrictList = ()=>{
+  // This functon set the district list for division wise
+  const setDistrictList = () => {
     var diviList = document.getElementById("divisions").value;
-    var disctList ;
+    var disctList;
 
     // set barishal division districts
     if (diviList == "Barishal") {
@@ -75,13 +69,12 @@ const [profession,setProfession] = useState("");
 
     //  set/send districts name to District lists from division
     document.getElementById("distr").innerHTML = disctList;
-  }
+  };
 
-  // This function set the Upzilla Name for districtwise 
-  const setUpzillaList = ()=>{
-    
+  // This function set the Upzilla Name for districtwise
+  const setUpzillaList = () => {
     var DisList = document.getElementById("distr").value;
-    var  upZillaList ;
+    var upZillaList;
     if (DisList == "Bagerhat") {
       upZillaList =
         '<option value="">Select One</option><option value="Bagerhat Sadar">Bagerhat Sadar</option><option value="Chitalmari">Chitalmari</option><option value="Fakirhat">Fakirhat</option><option value="Kachua">Kachua</option><option value="Mollahat">Mollahat</option><option value="Mongla">Mongla</option><option value="Morrelganj">Morrelganj</option><option value="Rampal">Rampal</option><option value="Sarankhola">Sarankhola</option><option value="Others">Others</option>';
@@ -339,10 +332,10 @@ const [profession,setProfession] = useState("");
         '<option value="">Select One</option><option value="Baliadangi">Baliadangi</option><option value="Haripur">Haripur</option><option value="Pirganj">Pirganj</option><option value="Ranisankail">Ranisankail</option><option value="Thakurgaon Sadar">Thakurgaon Sadar</option><option value="Others">Others</option>';
     }
 
-    document.getElementById("polic_sta").innerHTML =  upZillaList;
-  }
+    document.getElementById("polic_sta").innerHTML = upZillaList;
+  };
 
-  const ClickforSeach = ()=>{
+  const ClickforSeach = () => {
     fetch(
       `http://localhost:3000/findPerson?divisionName=${divisionName}&zillaName=${zillaName}&upZillaName=${upZillaName}&profession=${profession}`
     )
@@ -352,8 +345,8 @@ const [profession,setProfession] = useState("");
         setPerson(data);
       })
       .catch((error) => console.error(error));
-  }
-  
+  };
+
   return (
     <div>
       <h2 className="text-2xl text-center py-10">
@@ -364,7 +357,7 @@ const [profession,setProfession] = useState("");
         <form action="" id="form-location" method="GET">
           {/* Heading */}
           <div className="title"> </div>
-          {/*/ Heading */} 
+          {/*/ Heading */}
           {/*Division Section*/}
           <div className="label-select">
             <label htmlFor="divisions" className="lbl">
@@ -374,8 +367,7 @@ const [profession,setProfession] = useState("");
               name="divisions"
               id="divisions"
               value={divisionName}
-              onChange={selecedDivision} // callding selectDivision functin and there i set useState and insert districts Name 
-
+              onChange={selecedDivision} // callding selectDivision functin and there i set useState and insert districts Name
             >
               <option disabled="" selected="">
                 Select Division
@@ -390,18 +382,20 @@ const [profession,setProfession] = useState("");
               <option value="Sylhet">Sylhet</option>
             </select>
           </div>
-     
+
           {/*/ Division Section End */}
           <br />
           <br />
           {/*Districts Section*/}
           <div className="label-select">
-            <label htmlFor="distr" className="lbl">Select District</label>
+            <label htmlFor="distr" className="lbl">
+              Select District
+            </label>
             <select
               name=""
               id="distr"
               value={zillaName}
-                  onChange={selectedZilla}
+              onChange={selectedZilla}
             />
           </div>
           {/*/ Districts Section*/}
@@ -410,37 +404,40 @@ const [profession,setProfession] = useState("");
           {/*Police Station Section*/}
 
           <div className="label-select">
-            <label htmlFor="polic_sta" className="lbl">Select Upzilla </label>
-            <select name="" id="polic_sta"
-             value={upZillaName}
-             onChange={selectedUpZilla}
+            <label htmlFor="polic_sta" className="lbl">
+              Select Upzilla{" "}
+            </label>
+            <select
+              name=""
+              id="polic_sta"
+              value={upZillaName}
+              onChange={selectedUpZilla}
             />
           </div>
           {/*/ Police Station Section*/}
-       
-      
-         <div className="search-box">
-                <input type="text" 
-                className="search-input" 
-                placeholder='Search profession.. ' 
-                value={profession}
-                onChange={(e)=>setProfession(e.target.value)}
-                />
-                {/* Here is butto for calling ClickforSearch function that send request on server and give us response  */}
-                <div className="serch-button" onClick={ClickforSeach}> 
 
-                <i className="fa fa-search"></i>
-                </div>
-               
+          <div className="search-box">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search profession.. "
+              value={profession}
+              onChange={(e) => setProfession(e.target.value)}
+            />
+            {/* Here is butto for calling ClickforSearch function that send request on server and give us response  */}
+            <div className="serch-button" onClick={ClickforSeach}>
+              <i className="fa fa-search"></i>
             </div>
-             <p>Your selected zilla is :{divisionName}+ {zillaName} +  {upZillaName} + {profession}</p>
-
+          </div>
+          <p>
+            Your selected :{divisionName}+ {zillaName} + {upZillaName} +{" "}
+            {profession}
+          </p>
         </form>
         {/* <button  onClick={ClickforSeach}>Search</button> */}
-     
-      
       </div>
-      <ul>
+      <div className="display w-200 h-100 bg-red-200">
+        {/* <ul>
         {person.map((person) => (
           <li key={person._id}>
             <p>Name: {person.name}</p>
@@ -450,7 +447,74 @@ const [profession,setProfession] = useState("");
 
           </li>
         ))}
-      </ul>
+      </ul>  */}
+      </div>
+      {/* Here is mapping Table where all founded data is shown using in page   */}
+      <div className="overflow-x-auto m-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-md shadow-2xl ">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Details</th>
+              <th> Experienced From </th>
+              <th>Mobile</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {person.map((person) => (
+              <tr>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img
+                          src="https://img.freepik.com/free-photo/pink-rose-frame-floral-oval-badge_53876-101264.jpg?w=996&t=st=1695497627~exp=1695498227~hmac=7040b2974b6e61b89307eb3a3fc64e00c12c74fd6917882ad879f14b58c0dd40"
+                          alt=" "
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold font-mono"> {person.name}</div>
+                      {/* display name and profession  */}
+                      <div className="text-sm opacity-50">
+                        {" "}
+                        {person.profession}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  {person.details}
+                  {/* Here display the detais of desired person  */}
+                  <br />
+                </td>
+                <td>{person.experienceDate}</td>
+                <td> {person.mobile} </td>
+                <th>
+                  <button className="btn btn-info ">
+                    {" "}
+                    <a target="_blank" href={person.facebookId}>
+                      {" "}
+                      details{" "}
+                    </a>
+                  </button>
+                </th>
+              </tr>
+            ))}
+          </tbody>
+          {/* foot */}
+        </table>
+      </div>
+
+      {/* Props for display data  */}
+      {/* Here is mapping Table where all founded data is shown using other page Props    */}
+      {/* 
+      {person.map((person) => (
+        <PersonList person={person} />
+      ))} */}
     </div>
   );
 };

@@ -47,10 +47,10 @@ const Layout = (props) => {
             </ul>
           </div>
           <div className="middle-nav">
-            <button className="btn btn-success">
-              {" "}
-              <Link to="/post"> Post Your Service </Link>{" "}
-            </button>
+            <Link to="/post"> <button className="btn btn-success">
+            
+              Post Your Service
+            </button> </Link>
           </div>
         </div>
         <div className="navbar-center">
