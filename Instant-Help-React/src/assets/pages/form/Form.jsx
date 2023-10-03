@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./form.css";
 import Illustration from "/images/register-img.jpg";
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 const Form = () => {
   // use for data passing in backend
 
@@ -21,9 +22,12 @@ const Form = () => {
 const [password,setPassword] = useState("") ;
 const [reEnterPassword,setReEnterPassword] = useState("") ;
 
+const navigate = useNavigate();
+
 
 
   const handleSubmit = async(e)=>{
+
       e.preventDefault();
       try{
         const response = await axios.post('http://localhost:3000/register',{
@@ -42,6 +46,12 @@ const [reEnterPassword,setReEnterPassword] = useState("") ;
           password,
           reEnterPassword
         });
+        // navigation added
+        
+          popShow() ;
+      
+
+    
         console.log("Respose: ", response.data);
       }
       catch(error){
@@ -407,10 +417,26 @@ const [reEnterPassword,setReEnterPassword] = useState("") ;
     document.getElementById("polic_sta").innerHTML = upzillaList;
   };
   // List of UpZilla distrcivtwise End
+
+  // Pop Up Showing and Removing 
+ 
+    const popShow = () => {
+      document.getElementById("PopUp").classList.add("open-popup");
+      document.getElementById("wrapper_box").classList.add("blur")
+    };
+    const popRemove = () => {
+      document.getElementById("PopUp").classList.remove("open-popup");
+      document.getElementById("wrapper_box").classList.remove("blur");
+      navigate(`/Profile/${name}/${mobile}`)
+
+    };
+
   return (
+    <>
+   
     <div className="canvas">
-      <div className="wrapper">
-        <location />
+      <div className="wrapper" id="wrapper_box">
+     
         <div className="images">
           <img src={Illustration} alt="" />
         </div>
@@ -672,7 +698,8 @@ const [reEnterPassword,setReEnterPassword] = useState("") ;
               {" "}
               Previous{" "}
             </button>
-            <button className="btn btn-primary" type="submit">
+            <button className="btn btn-primary" type="submit"  onClick={popShow} >
+              {/* onClick={popShow} */}
               {" "}
               Submit{" "}
             </button>
@@ -681,7 +708,23 @@ const [reEnterPassword,setReEnterPassword] = useState("") ;
           {/* Form Page no Three   End   */}
         </div>
       </div>
-    </div>
+
+      <div className="PopUp" id="PopUp">
+          <img src="./images/tick.png" alt="" srcset="" />
+          <h1> Thank You </h1>
+          <p>Your Registration is completed Successfully </p>
+          <button className="btn" onClick={popRemove}>
+            {" "}
+            OK{" "}
+          </button>
+        </div>
+   
+{/* <button onClick={popShow}> Pop Show callng </button> */}
+   
+   
+   </div>
+   
+    </>
   );
 };
 

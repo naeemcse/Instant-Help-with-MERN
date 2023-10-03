@@ -18,6 +18,11 @@
     display: flex;
     overflow: hidden; 
   }
+  .blur{
+    /* visibility: hidden; */
+    /* transform: translate(-50%,-50%) scale(0.1);   */
+
+  }
   
   .images {
     flex: 1;
