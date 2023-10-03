@@ -11,6 +11,8 @@ import Login from "./assets/pages/login/Login";
 import Demo from "./assets/pages/Demo/Demo";
 //import TestSearch from "./assets/pages/TestSearch/testSearch";
 
+import Profile from "./assets/pages/userProfile/Profile";
+
 
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
         <Route path="*" element={<NotFound/>}/>
         <Route path="/post" element={<Form/>}/>
       <Route path="/demo" element={<Demo/>} />
-        
+      <Route path="/user" element={<Profile/>} />
          
           
    </Routes>
