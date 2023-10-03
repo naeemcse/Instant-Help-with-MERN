@@ -13,6 +13,8 @@ import PopUp from "./assets/components/popupPage/PopUp";
 
 //import TestSearch from "./assets/pages/TestSearch/testSearch";
 
+import Profile from "./assets/pages/userProfile/Profile";
+
 
 
 function App() {
@@ -30,9 +32,6 @@ function App() {
         <Route path="*" element={<NotFound/>}/>
         <Route path="/post" element={<Form/>}/>
       <Route path="/demo" element={<Demo/>} />
-      <Route path="/popup" element={<PopUp/>} />
-    
-
         
          
           
