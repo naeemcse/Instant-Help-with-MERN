@@ -8,3 +8,7 @@ install : React Router DOM
 Typewritter Animation for text . 
 Github Link is : https://github.com/awran5/react-simple-typewriter 
 Here is full documentation 
+
+2. 
+React Icons 
+link: https://react-icons.github.io/react-icons

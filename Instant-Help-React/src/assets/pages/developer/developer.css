@@ -1,0 +1,44 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Edu+QLD+Beginner:wght@500&family=Libre+Baskerville:wght@700&family=Lugrasimo&display=swap');
+/* font-family: 'Concert One', cursive;
+font-family: 'Edu QLD Beginner', cursive;
+font-family: 'Libre Baskerville', serif;
+font-family: 'Lugrasimo', cursive; */
+.body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 120vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+.info h1{
+    font-family: 'Lugrasimo', cursive; 
+    color:#23d5ab ;
+    font-size: 30px;
+}
+.info p{
+    font-family: 'Libre Baskerville', serif;
+}
+/*  Hover on devoloper in zoom   */
+.dev1,
+.dev2 {
+  transition: transform 0.5s ease; /* Adjust the duration and timing function as needed */
+}
+
+.dev1:hover,
+.dev2:hover {
+  transform: scale(1.1); /* Adjust the scale factor for the zoom-in effect */
+}
