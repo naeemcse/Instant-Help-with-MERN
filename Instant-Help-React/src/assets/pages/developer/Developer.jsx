@@ -10,18 +10,18 @@ const Developer = () => {
       <div className="body wraper bg-gray-200">
         <div className="text-center text-2xl font-bold text-white pt-2">
           Thank you for vising our website . <br />
-          This is our 5th Semester Project on DBMD .
+          This is our 5th Semester Project on DBMS .
         </div>
         {/* Belal Uddin  */}
         <div className="dev1 lg:flex  text-center rounded-2xl lg:ml-40 lg:mr-40  bg-green-200 justify-center mt-10 p-10">
-         <div className="avatar order-first md:order-last m-5 lg:ml-40">
+          <div className="avatar order-first md:order-last m-5 lg:ml-40">
             <div className="w-44 h-44 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               <img
                 className="rounded-full"
                 src="https://scontent.fdac31-1.fna.fbcdn.net/v/t39.30808-6/275694236_3138012059808569_1514716233821755873_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeHzTp9yiHS_prW-TdbzlB1NYebyt39-4sRh5vK3f37ixCET_KYr9hoKeJhcNTmsEUg6uYkos1iEKNqlvLLLIVW6&_nc_ohc=E9FR4DHTGyUAX9_HhWN&_nc_oc=AQl2ajr2v3EFXGlVXgzg64RZ5J6eB4Bp_JS7Zjz6kxyL7CVqWzibYi18rOkQBxMeZog&_nc_ht=scontent.fdac31-1.fna&oh=00_AfDpRXabd_deYfEVdkT8nAft7TAxfbN9QrZZSPdftJpczQ&oe=65216770"
               />
             </div>
-          </div> 
+          </div>
           <div className="info">
             <h1>Belal Uddin </h1>
             <span> Software Engineer </span>
@@ -35,12 +35,10 @@ const Developer = () => {
               />
             </div>
           </div>
-          
-         
         </div>
         {/* Naeem  */}
         <div className="dev2 lg:flex  text-center rounded-2xl mt-1 lg:ml-40 lg:mr-40  bg-green-200 justify-center p-10">
-         <div className="avatar order-first md:order-last m-5 lg:ml-40">
+          <div className="avatar order-first md:order-last m-5 lg:ml-40">
             <div className="w-44 h-44 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               <img
                 className="rounded-full"
@@ -48,9 +46,9 @@ const Developer = () => {
                 alt="Naeem"
               />
             </div>
-          </div> 
+          </div>
           <div className="info">
-            <h1> Najmu Islam Naeem  </h1>
+            <h1> Najmu Islam Naeem </h1>
             <span> Software Engineer </span>
             <p> I am a pationate Softawre Engineer ........ </p>
             <div className="social-media">
@@ -62,13 +60,10 @@ const Developer = () => {
               />
             </div>
           </div>
-          
-         
         </div>
       </div>
 
-<IntroductionDiv/>
-
+      <IntroductionDiv />
     </Layout>
   );
 };

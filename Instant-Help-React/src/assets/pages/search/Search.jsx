@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import "./search.css";
-import PersonList from "../../components/personList/PersonList";
+// import PersonList from "../../components/personList/PersonList";
+
+import { Link } from "react-router-dom";
+import professionList from '../../components/professionList/professionList';
 
 const Search = () => {
   const [person, setPerson] = useState([]);

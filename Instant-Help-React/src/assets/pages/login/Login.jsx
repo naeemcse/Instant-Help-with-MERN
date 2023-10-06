@@ -1,12 +1,14 @@
-import React from "react";
+// import React from "react";
 import Layout from "../../components/layout/Layout";
-import "./login.css"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 const Login = () => {
   
   const [mobile,setMobile] = useState('');
   const [password,setPassword] = useState('');
-  const [message,setMessage] = useState('');
+  // const [message,setMessage] = useState('');
   const navigate = useNavigate();
   
 
@@ -20,7 +22,7 @@ const Login = () => {
       });
 
       if(respose.data.success){
-        setMessage('Login Successful');
+        // setMessage('Login Successful');
         console.log('Logged in\n');
         console.log(respose.data);
 
@@ -28,7 +30,7 @@ const Login = () => {
         navigate(`/LoginProfile`,{state: {user}});
       }
       else{
-        setMessage('Mobile number or password is incorrect');
+        // setMessage('Mobile number or password is incorrect');
         console.log('Wrong password or mobile')
       }
     }catch(error){

@@ -4,6 +4,7 @@ import Illustration from "/images/register-img.jpg";
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import professionList from './../../components/professionList/professionList';
+import Layout from "../../components/layout/Layout";
 const Form = () => {
   // use for data passing in backend
 
@@ -433,8 +434,8 @@ const navigate = useNavigate();
     };
 
   return (
-    <>
-   
+    <Layout>
+
     <div className="canvas">
       <div className="wrapper" id="wrapper_box">
      
@@ -734,7 +735,8 @@ const navigate = useNavigate();
    
    </div>
    
-    </>
+    
+    </Layout>
   );
 };
 
