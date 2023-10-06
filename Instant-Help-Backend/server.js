@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors');
 const mongoose = require('mongoose');
 const PersonModel = require('./models/registrationModel');
+const async = require('hbs/lib/async');
 
 const app = express();
 app.use(express.json());
@@ -57,6 +58,19 @@ app.get('/findPersonDemo', async(req,res)=>{
     console.error(error);
     res.status(500).json({ error : 'An error occured while fetching data'});
    }
+})
+
+// this method is used for loging 
+app.post('/login', async(req,res)=>{
+    const {mobile,password} = req.body;
+    const user = await PersonModel.findOne({mobile,password});
+    console.log(user)
+    if(user){
+        res.json({success:true,user, message: 'Login successful'});
+    }
+    else{
+        res.json({success:false, message: 'mobile number of password is incorrect'})
+    }
 })
 app.listen(3000, ()=>{
     console.log('Server is running');

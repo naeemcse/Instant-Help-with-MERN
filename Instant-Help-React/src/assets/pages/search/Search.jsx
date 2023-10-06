@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Typewriter } from 'react-simple-typewriter'
 import "./search.css";
 import PersonList from "../../components/personList/PersonList";
-
+import { Link } from 'react-router-dom';
 const Search = () => {
   const [person, setPerson] = useState([]);
   const [divisionName, setDivisionName] = useState("");
@@ -480,14 +480,14 @@ const Search = () => {
           <tbody>
             {/* row 1 */}
             {person.map((person) => (
-              <tr>
+              <tr key={person.id}>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
                         <img
                           src="https://img.freepik.com/free-photo/pink-rose-frame-floral-oval-badge_53876-101264.jpg?w=996&t=st=1695497627~exp=1695498227~hmac=7040b2974b6e61b89307eb3a3fc64e00c12c74fd6917882ad879f14b58c0dd40"
-                          alt=" "
+                          alt="{person.name}'s Photo "
                         />
                       </div>
                     </div>
@@ -510,11 +510,7 @@ const Search = () => {
                 <td> {person.mobile} </td>
                 <th>
                   <button className="btn btn-info ">
-                    {" "}
-                    <a target="_blank" href={person.facebookId}>
-                      {" "}
-                      details{" "}
-                    </a>
+                   <Link to={`/profile/${person.id}?data=${JSON.stringify(person)}`}>Details</Link>
                   </button>
                 </th>
               </tr>
