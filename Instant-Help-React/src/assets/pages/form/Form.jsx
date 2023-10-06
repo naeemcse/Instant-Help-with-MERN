@@ -3,6 +3,7 @@ import "./form.css";
 import Illustration from "/images/register-img.jpg";
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import professionList from './../../components/professionList/professionList';
 const Form = () => {
   // use for data passing in backend
 
@@ -635,8 +636,16 @@ const navigate = useNavigate();
                   placeholder="Write your Profesion "
                   value={profession}
                   onChange={(e)=>setProfession(e.target.value)} 
-
+                  list="professions"
                 />
+            {/* Profession List Data list calling  */}
+        <datalist id="professions">
+          {  professionList.map((value,index)=>(
+              <option key={index} value={value} />
+            )
+            )}
+            
+        </datalist>
               </div>
 
               <div className="form-field">
@@ -711,8 +720,9 @@ const navigate = useNavigate();
 
       <div className="PopUp" id="PopUp">
           <img src="./images/tick.png" alt="" srcset="" />
-          <h1> Thank You </h1>
-          <p>Your Registration is completed Successfully </p>
+          <h1> Thank You <br /> <span className=" text-green-600 font-serif italic font-bold"> {name} </span> </h1>
+          <p>Your Registration is completed Successfully for <br /> 
+          <span className="text-green-600 font-serif font-bold"> {profession} </span>  </p>
           <button className="btn" onClick={popRemove}>
             {" "}
             OK{" "}

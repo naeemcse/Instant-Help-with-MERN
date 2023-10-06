@@ -65,3 +65,12 @@ select {
 }
 
 /* Search Box Ends  */
+
+
+/* Onclik Table is Display and Hide  */
+.hideTable{
+    visibility: hidden ;
+}
+.showTable{
+    visibility: visible;
+}

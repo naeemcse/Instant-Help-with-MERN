@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Typewriter } from 'react-simple-typewriter'
+import { Typewriter } from "react-simple-typewriter";
 import "./search.css";
 import PersonList from "../../components/personList/PersonList";
+import professionList from "../../components/professionList/professionList";
 
 const Search = () => {
   const [person, setPerson] = useState([]);
@@ -337,6 +338,7 @@ const Search = () => {
   };
 
   const ClickforSeach = () => {
+     document.getElementById("tableHead").classList.add("showTable") ;
     fetch(
       `http://localhost:3000/findPerson?divisionName=${divisionName}&zillaName=${zillaName}&upZillaName=${upZillaName}&profession=${profession}`
     )
@@ -350,23 +352,22 @@ const Search = () => {
 
   return (
     <div>
-      
       <div className="flex items-center justify-center">
-      <h2 className="text-2xl text-center py-10 font-bold">
-        Select Your Location for{' '}
-        <span className="flex">
-          <Typewriter
-            words={[' Finding Your Necessary People']}
-            loop={5}
-            cursor
-            cursorStyle="_"
-            typeSpeed={70}
-            deleteSpeed={100}
-            delaySpeed={3000}
-          />
-        </span>
-      </h2>
-    </div>
+        <h2 className="text-2xl text-center py-10 font-bold">
+          Select Your Location for{" "}
+          <span className="flex">
+            <Typewriter
+              words={[" Finding Your Necessary People"]}
+              loop={5}
+              cursor
+              cursorStyle="_"
+              typeSpeed={70}
+              deleteSpeed={100}
+              delaySpeed={3000}
+            />
+          </span>
+        </h2>
+      </div>
 
       <div className="location bg-fuchsia-50 w-1/2 rounded-2xl p-10 m-auto">
         <form action="" id="form-location" method="GET">
@@ -384,11 +385,11 @@ const Search = () => {
               value={divisionName}
               onChange={selecedDivision} // callding selectDivision functin and there i set useState and insert districts Name
             >
-              <option disabled="" selected="">
-                Select Division
-              </option>
+              <option>Select Division</option>
               <option value="Barishal">Barishal</option>
-              <option value="Chattogram">Chattogram</option>
+              <option value="Chattogram" selected>
+                Chattogram
+              </option>
               <option value="Dhaka">Dhaka</option>
               <option value="Khulna">Khulna</option>
               <option value="Mymensingh">Mymensingh</option>
@@ -416,7 +417,7 @@ const Search = () => {
           {/*/ Districts Section*/}
           <br />
           <br />
-          {/*Police Station Section*/}
+          {/* Upzilla  Section*/}
 
           <div className="label-select">
             <label htmlFor="polic_sta" className="lbl">
@@ -429,7 +430,7 @@ const Search = () => {
               onChange={selectedUpZilla}
             />
           </div>
-          {/*/ Police Station Section*/}
+          {/*/ Upzilla  Section close */}
 
           <div className="search-box">
             <input
@@ -438,37 +439,37 @@ const Search = () => {
               placeholder="Search profession.. "
               value={profession}
               onChange={(e) => setProfession(e.target.value)}
+              list="professions"
             />
+
+            {/* Profession List Data list calling  */}
+
+            <datalist id="professions">
+              {professionList.map((suggest, index) => (
+                <option key={index} value={suggest} />
+              ))}
+            </datalist>
+
             {/* Here is butto for calling ClickforSearch function that send request on server and give us response  */}
             <div className="serch-button" onClick={ClickforSeach}>
               <i className="fa fa-search"></i>
             </div>
           </div>
-          <p>
+
+          {/* <p>
             Your selected :{divisionName}+ {zillaName} + {upZillaName} +{" "}
             {profession}
-          </p>
+          </p> */}
         </form>
+
         {/* <button  onClick={ClickforSeach}>Search</button> */}
       </div>
-      <div className="display w-200 h-100 bg-red-200">
-        {/* <ul>
-        {person.map((person) => (
-          <li key={person._id}>
-            <p>Name: {person.name}</p>
-            <p>Division: {person.divisionName}</p>
-            <p>Zilla: {person.zillaName}</p>
-            <p>Mobile Number : {person.mobile}</p>
-
-          </li>
-        ))}
-      </ul>  */}
-      </div>
+      <div className="display w-200 h-100 bg-red-200"></div>
       {/* Here is mapping Table where all founded data is shown using in page   */}
-      <div className="overflow-x-auto m-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-md shadow-2xl ">
+      <div className="overflow-x-auto m-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-md shadow-2xl hideTable"  id="tableHead">
         <table className="table">
           {/* head */}
-          <thead>
+          <thead >
             <tr>
               <th>Name</th>
               <th>Details</th>
