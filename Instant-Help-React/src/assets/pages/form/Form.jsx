@@ -468,7 +468,7 @@ const navigate = useNavigate();
               <input
                 className="input-fields"
                 placeholder="01....."
-                type="number"
+                type="text"
                 name="mobile"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}

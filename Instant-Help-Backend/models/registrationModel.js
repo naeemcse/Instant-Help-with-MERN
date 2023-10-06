@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const RegistrationSchema = new mongoose.Schema({
           name:String,
-          mobile:Number,
+          mobile:String,
           email:String,
           facebookId:String,
           dateOfBirth:Date,

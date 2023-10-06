@@ -11,6 +11,7 @@ import Demo from "./assets/pages/Demo/Demo";
 import PopUp from "./assets/components/popupPage/PopUp";
 import Profile from "./assets/pages/userProfile/Profile";
 import Developer from "./assets/pages/developer/Developer";
+import LoginProfile from "./assets/pages/Profile/LoginProfile";
 
 //import TestSearch from "./assets/pages/TestSearch/testSearch";
 
@@ -27,8 +28,9 @@ function App() {
           <Route path="/post" element={<Form />} />
           <Route path="/demo" element={<Demo />} />
           {/* <Route pathe="/profile" element={<Profile />} /> */}
-          <Route path="/profile" element={<Profile/>} />
+          <Route path="/profile/:id" element={<Profile/>} />
           {/* <Route path="/developer" element={<Developer />} /> */}
+          <Route path="/LoginProfile" element={<LoginProfile/>}/>
           <Route path="/about" element={<Developer />} />
 
           <Route path="*" element={<NotFound />} />
