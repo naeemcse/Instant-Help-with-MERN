@@ -1,0 +1,101 @@
+[33mcommit 1080b6e854127a501fcfa766ec42097686c891a8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Fri Oct 6 12:21:34 2023 +0600
+
+    login.css is removed
+
+[33mcommit c24727601f02b5e85b2306e204b3a9b230e85dd6[m
+Merge: 1bcc277 714dc86
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Fri Oct 6 12:14:53 2023 +0600
+
+    Merge branch 'main' of https://github.com/naeemcse/Instant-Help-with-MERN
+
+[33mcommit 1bcc277a764cf4e8365af4014fa247ec347b2827[m
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Fri Oct 6 12:04:33 2023 +0600
+
+    Log in button , sign up button is added
+    
+    Output table hiding , popup page also improved
+
+[33mcommit 714dc866c970e36af99f091549af2933a480fc61[m
+Author: Belal Uddin <belalwr9999@gmail.com>
+Date:   Fri Oct 6 11:58:45 2023 +0600
+
+    I have worked on login page,profile page,now a service provider can log in and see his/her profile
+
+[33mcommit b0195a00209f1cfcfd21091fadabe6fb8fb2c939[m
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Thu Oct 5 03:24:58 2023 +0600
+
+    Log page is added
+
+[33mcommit 231d15f636f1c239a97eea08ddf501922b419538[m
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Thu Oct 5 03:08:32 2023 +0600
+
+    About page is created
+
+[33mcommit 089d7cc704223b1fe9466c26cb2b856711108672[m
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Wed Oct 4 12:56:32 2023 +0600
+
+    Profile page design is completed !
+
+[33mcommit f3ab01ebec85ee23aad227c287d7de2bc1062e50[m
+Merge: 7af2cf5 8dec0ec
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Wed Oct 4 00:09:15 2023 +0600
+
+    Merge branch 'main' of https://github.com/naeemcse/Instant-Help-with-MERN
+
+[33mcommit 7af2cf59cff3045532e3699a5a41bfaca9b4b1f2[m
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Wed Oct 4 00:06:40 2023 +0600
+
+    PopUp Notification is added !!!
+
+[33mcommit 8dec0ec2c27bb852ce88db00bed5a963ecc94f10[m
+Author: Belal Uddin <belalwr9999@gmail.com>
+Date:   Tue Oct 3 23:40:45 2023 +0600
+
+    User Profile is added
+
+[33mcommit 3a4cab30297354ca20beb51e7f2c3c9a03468098[m
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Mon Sep 25 01:15:48 2023 +0600
+
+    Type Writer style  in text is added
+
+[33mcommit a5a5d4fb84be99c4530c464a7ba4105bd55ca55b[m
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Sun Sep 24 09:45:34 2023 +0600
+
+    Display Table is added
+
+[33mcommit 21c114d8b8491f364e93afd5d1b6e7a59930e97e[m
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Sat Sep 23 14:04:12 2023 +0600
+
+    Our Backend is connected and show the result
+
+[33mcommit 90cd24947f990be0a7aa51249df6623b535657d7[m
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Wed Sep 20 00:49:16 2023 +0600
+
+    Frontend (React ) file is added
+    
+    Here was git file of previous repository , i deleted these git
+
+[33mcommit 9620fee051b9709645a8cbabfbcab8f28e3bcf55[m
+Author: Najmul Islam Naeem <csenajmulislamnaeem@gmail.com>
+Date:   Wed Sep 20 00:30:35 2023 +0600
+
+    Backend added
+
+[33mcommit 4c9744faa38339a1fe5bbed046056653a0e2fedf[m
+Author: Najmul Islam Naeem <83476865+naeemcse@users.noreply.github.com>
+Date:   Wed Sep 20 00:23:43 2023 +0600
+
+    Initial commit
