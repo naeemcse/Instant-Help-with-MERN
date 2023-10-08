@@ -1,14 +1,18 @@
 // import React from "react";
 import Layout from "../../components/layout/Layout";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
+// import async from "hbs/lib/async";
+// import "./login.css"
 
 const Login = () => {
   
   const [mobile,setMobile] = useState('');
   const [password,setPassword] = useState('');
   // const [message,setMessage] = useState('');
+  
   const navigate = useNavigate();
   
 

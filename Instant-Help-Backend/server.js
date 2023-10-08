@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors');
 const mongoose = require('mongoose');
 const PersonModel = require('./models/registrationModel');
-const async = require('hbs/lib/async');
+//const async = require('hbs/lib/async');
 
 const app = express();
 app.use(express.json());

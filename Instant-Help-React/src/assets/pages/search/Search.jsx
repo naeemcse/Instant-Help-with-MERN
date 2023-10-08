@@ -490,7 +490,7 @@ const Search = () => {
                       <div className="mask mask-squircle w-12 h-12">
                         <img
                           src="https://img.freepik.com/free-photo/pink-rose-frame-floral-oval-badge_53876-101264.jpg?w=996&t=st=1695497627~exp=1695498227~hmac=7040b2974b6e61b89307eb3a3fc64e00c12c74fd6917882ad879f14b58c0dd40"
-                          alt="{person.name}'s Photo "
+                          alt=" "
                         />
                       </div>
                     </div>
@@ -512,7 +512,7 @@ const Search = () => {
                 <td>{person.experienceDate}</td>
                 <td> {person.mobile} </td>
                 <th>
-                  <button className="btn btn-info ">
+                <button className="btn btn-info ">
                    <Link to={`/profile/${person.id}?data=${JSON.stringify(person)}`}>Details</Link>
                   </button>
                 </th>
