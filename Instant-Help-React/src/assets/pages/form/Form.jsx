@@ -429,8 +429,8 @@ const navigate = useNavigate();
     const popRemove = () => {
       document.getElementById("PopUp").classList.remove("open-popup");
       document.getElementById("wrapper_box").classList.remove("blur");
-      navigate(`/Profile/${name}/${mobile}`)
-
+      // navigate(`/Profile/${name}/${mobile}`)
+      navigate('/');
     };
 
   return (

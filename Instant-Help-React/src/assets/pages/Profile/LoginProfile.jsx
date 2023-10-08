@@ -86,12 +86,13 @@ const LoginProfile = () => {
                 Facebook Id link:
               </label>
               <a
-                href="www.facebook.com/Belaluddin"
+                // href="www.facebook.com/Belaluddin"
+                href={`https://www.facebook.com/${user.facebookId}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ml-2 text-blue-500 underline"
               >
-                http://www.faceboook.com/bellal-uddin
+                facebook
               </a>
             </div>
             <div className="info-item">
