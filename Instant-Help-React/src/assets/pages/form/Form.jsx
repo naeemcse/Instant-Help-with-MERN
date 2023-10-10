@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./form.css";
 import Illustration from "/images/register-img.jpg";
-import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
-import professionList from './../../components/professionList/professionList';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import professionList from "./../../components/professionList/professionList";
 import Layout from "../../components/layout/Layout";
 const Form = () => {
   // use for data passing in backend
@@ -12,27 +12,48 @@ const Form = () => {
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
   const [facebookId, setFacebookId] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState('2023-09-14');
+  const [dateOfBirth, setDateOfBirth] = useState("2023-09-14");
   const [selectedGender, setSelectedGender] = useState("Male");
   const [divisionName, setDivisionName] = useState("");
-  const [zillaName,setZillaName] = useState(""); 
-  const [upZillaName,setUpZillaName] = useState(""); 
-  const [profession,setProfession] = useState("");
-  const [experienceDate,setExperienceDate] = useState('2023-09-14') ;
-  const [details,setDetails] = useState("") ;
- 
-const [password,setPassword] = useState("") ;
-const [reEnterPassword,setReEnterPassword] = useState("") ;
+  const [zillaName, setZillaName] = useState("");
+  const [upZillaName, setUpZillaName] = useState("");
+  const [profession, setProfession] = useState("");
+  const [experienceDate, setExperienceDate] = useState("2023-09-14");
+  const [details, setDetails] = useState("");
 
-const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [reEnterPassword, setReEnterPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  // form validatin state
+
+  const [isNameValid, setIsNameValid] = useState(true);
+  const [isMobileValid, setIsMobileValid] = useState(true);
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isDivisionValid, setIsDivisionValid] = useState(true);
+
+  const [districtName, setDistrictName] = useState(''); // This is repetation of zillaName case previous it was not decleared 
+  const [isDistrictValid, setIsDistrictValid] = useState(true);
+
+  const [isUpZillaValid, setIsUpZillaValid] = useState(true);
+
+  // validation for second page 
+  const [isProfessionValid, setIsProfessionValid] = useState(true);
 
 
+  // validaton for fomr 3 password 
+  const [isPasswordMatch, setIsPasswordMatch] = useState(true);
+  
 
-  const handleSubmit = async(e)=>{
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const isPasswordFormValid = validatePasswordForm();
+    if (isPasswordFormValid) {
+      console.log('Password form submitted successfully');
 
-      e.preventDefault();
-      try{
-        const response = await axios.post('http://localhost:3000/register',{
+      try {
+        const response = await axios.post("http://localhost:3000/register", {
           name,
           mobile,
           email,
@@ -46,52 +67,144 @@ const navigate = useNavigate();
           experienceDate,
           details,
           password,
-          reEnterPassword
+          reEnterPassword,
         });
         // navigation added
-        
-          popShow() ;
-      
-
-    
+  
+        popShow();
+  
         console.log("Respose: ", response.data);
+      } catch (error) {
+        console.error("Error", error);
       }
-      catch(error){
-        console.error("Error",error);
-      }
-  }
-  // Here is a functin of onChange of divisin Select , here i set the useState of division Name and updated the districts Name for division wise 
+      // Additional logic for form submission
+      // If you want to move to the next page, you can call the function for that here
+      // For example: nextPasswordForm();
+    } else {
+      console.log('Password form validation failed');
+      // Additional logic for handling validation failure
+      // If validation fails, you can handle it accordingly
+    }
+
+   
+  };
+
+  // form 1 validation  function
+
+  const validateForm = () => {
+    // Name validatio
+    const isNameValid = name.trim() !== "";
+    setIsNameValid(isNameValid);
+
+    // Validation for Mobile
+    const isMobileValid = validateMobile(mobile);
+    setIsMobileValid(isMobileValid);
+
+    // Validation for Email
+    const isEmailValid = validateEmail(email);
+    setIsEmailValid(isEmailValid);
+    // Validation for Division
+    const isDivisionValid = divisionName !== "";
+    setIsDivisionValid(isDivisionValid);
+    // Validation for District
+    const isDistrictValid = districtName !== "";
+    setIsDistrictValid(isDistrictValid);
+
+    // Validation for Upzilla
+    const isUpZillaValid = upZillaName !== "";
+    setIsUpZillaValid(isUpZillaValid);
+
+    // Return true if all fields are valid
+    return (
+      isNameValid &&
+      isMobileValid &&
+      isEmailValid &&
+      isDivisionValid &&
+      isDistrictValid &&
+      isUpZillaValid
+    );
+  };
+
+  // mobile number validation for Bangladesh
+
+  const validateMobile = (phoneNumber) => {
+    // Regular expression for a Bangladeshi mobile number
+    const phoneRegex = /^01[3-9]\d{8}$/;
+    return phoneRegex.test(phoneNumber);
+  };
+
+  // Email validation function
+
+  const validateEmail = (email) => {
+    // Simple email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+
+// form 2 validation function 
+
+const validateProfessionForm = () => {
+  // Validation for Profession
+  const isProfessionValid = profession.trim() !== '';
+  setIsProfessionValid(isProfessionValid);
+
+  // Return true if the profession field is valid
+  return isProfessionValid;
+};
+
+// form 3 validation function for password mathch 
+const validatePasswordForm = () => {
+  // Validation for Password and Re-enter Password match
+  const isPasswordMatch = password === reEnterPassword;
+  setIsPasswordMatch(isPasswordMatch);
+
+  // Return true if the passwords match
+  return isPasswordMatch;
+};
+
+
+
+  // Here is a functin of onChange of divisin Select , here i set the useState of division Name and updated the districts Name for division wise
   const selecedDivision = (e) => {
     setDivisionName(e.target.value);
     districts();
+    setIsDivisionValid(true); // Reset validation on selection change
   };
 
-  // Here is a functin of onChange of districts Select , here i set the useState of  districtsName and updated the UpzillaName for districts wise 
+  // Here is a functin of onChange of districts Select , here i set the useState of  districtsName and updated the UpzillaName for districts wise
 
- 
-  const selectedZilla = (e)=>{
-    setZillaName(e.target.value) ;
-    upzillaList () ;
+  const selectedZilla = (e) => {
+    setZillaName(e.target.value);
+    upzillaList();
+    setDistrictName(e.target.value);
+    setIsDistrictValid(true); // Reset validation on selection change
+  };
 
-  }
+  // Here is a functin of onChange of upzilla Select , here i set the useState of  upzillaName
 
-  // Here is a functin of onChange of upzilla Select , here i set the useState of  upzillaName 
- 
-  const selectedUpZilla = (e)=>{
-    setUpZillaName(e.target.value) ;    
-  }
-
-
- 
-
+  const selectedUpZilla = (e) => {
+    setUpZillaName(e.target.value);
+    setIsUpZillaValid(true); // Reset validation on selection change
+  };
 
   // Form Page changing Start
 
   const next1 = () => {
-    var frm1 = document.getElementById("form-1");
-    var frm2 = document.getElementById("form-2");
-    frm1.style.left = "-400px";
-    frm2.style.left = "-350px";
+    const isFormValid = validateForm();
+    if (isFormValid) {
+      console.log("Form submitted successfully");
+
+      var frm1 = document.getElementById("form-1");
+      var frm2 = document.getElementById("form-2");
+      frm1.style.left = "-400px";
+      frm2.style.left = "-350px";
+
+      // Additional logic for form submission
+    } else {
+      console.log("Form validation failed");
+      // Additional logic for handling validation failure
+    }
   };
   const prev1 = () => {
     var frm1 = document.getElementById("form-1");
@@ -101,10 +214,26 @@ const navigate = useNavigate();
   };
 
   const next2 = () => {
-    var frm2 = document.getElementById("form-2");
+    const isProfessionFormValid = validateProfessionForm();
+
+    if (isProfessionFormValid) {
+      console.log('Profession form submitted successfully');
+
+
+      var frm2 = document.getElementById("form-2");
     var frm3 = document.getElementById("form-3");
     frm2.style.left = "-800px";
-    frm3.style.left = "-740px";
+    frm3.style.left = "-740px"
+      // Additional logic for form submission
+      // If you want to move to the next page, you can call the function for that here
+      // For example: nextProfessionForm();
+    } else {
+      console.log('Profession form validation failed');
+      // Additional logic for handling validation failure
+      // If validation fails, you can handle it accordingly
+    }
+
+    ;
   };
 
   const prev2 = () => {
@@ -420,322 +549,383 @@ const navigate = useNavigate();
   };
   // List of UpZilla distrcivtwise End
 
-  // Pop Up Showing and Removing 
- 
-    const popShow = () => {
-      document.getElementById("PopUp").classList.add("open-popup");
-      document.getElementById("wrapper_box").classList.add("blur")
-    };
-    const popRemove = () => {
-      document.getElementById("PopUp").classList.remove("open-popup");
-      document.getElementById("wrapper_box").classList.remove("blur");
-      // navigate(`/Profile/${name}/${mobile}`)
-      navigate('/');
-    };
+  // Pop Up Showing and Removing
+
+  const popShow = () => {
+    document.getElementById("PopUp").classList.add("open-popup");
+    document.getElementById("wrapper_box").classList.add("blur");
+  };
+  const popRemove = () => {
+    document.getElementById("PopUp").classList.remove("open-popup");
+    document.getElementById("wrapper_box").classList.remove("blur");
+    // navigate(`/Profile/${name}/${mobile}`)
+    navigate("/");
+  };
 
   return (
     <Layout>
+      <div className="canvas">
+        <div className="wrapper" id="wrapper_box">
+          <div className="images">
+            <img src={Illustration} alt="" />
+          </div>
 
-    <div className="canvas">
-      <div className="wrapper" id="wrapper_box">
-     
-        <div className="images">
-          <img src={Illustration} alt="" />
-        </div>
+          <div className="form-wrapper">
+            <form className="form-container" id="form-1">
+              {/* Form Page no One start  */}
 
-        <div className="form-wrapper">
-          <form className="form-container" id="form-1">
-            {/* Form Page no One start  */}
-
-            <div className="form-field">
-              <label htmlFor="name">Name</label>
-              <input
-                className="input-fields"
-                placeholder="Write Your Full Name "
-                type="text"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="mobile">
-                Mobile{" "}
-                <span>
-                  (Whatsapp <input type="checkbox" /> ){" "}
-                </span>{" "}
-              </label>
-              <input
-                className="input-fields"
-                placeholder="01....."
-                type="text"
-                name="mobile"
-                value={mobile}
-                onChange={(e) => setMobile(e.target.value)}
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="email">Email</label>
-              <input
-                className="input-fields"
-                type="email"
-                id="email"
-                placeholder="abc...@...com"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="form-field">
-              <label htmlFor="facebookId">
-                Facebook ID Link{" "}
-                <span className="text-sm text-black-100">(Optional)</span>{" "}
-              </label>
-              <input
-                className="input-fields"
-                type="text"
-                id=""
-                placeholder="facebook.com/Naeem"
-                name="facebookId"
-                value={facebookId}
-                onChange={(e) => setFacebookId(e.target.value)}
-              />
-            </div>
-
-            {/* Date of Birth Input  close  */}
-            <div className="form-field">
-              <label htmlFor="date_of_birth"> Date of Birth </label>
-              <input
-                type="date"
-                className="input-fields"
-                name="date_of_birth"
-                value={dateOfBirth}
-                onChange={(e) => setDateOfBirth(e.target.value)}
-              />
-            </div>
-            {/* Date of Birth Input  Close  */}
-
-            {/* Select Gender start */}
-
-            <div className="form-field">
-              <label htmlFor="gender">Select Gender</label>
-              <div className="radio-group">
-                <label className="radio-label">
-                  <input
-                    type="radio"
-                    name="radio-3"
-                    className="radio radio-secondary"
-                    value="Male"
-                    checked={selectedGender === "Male"}
-                    onChange={(e) => setSelectedGender(e.target.value)}
-                  />
-                  <span className="gender-male">Male</span>
-                </label>
-                <label className="radio-label">
-                  <input
-                    type="radio"
-                    name="radio-3"
-                    className="radio radio-secondary"
-                    value="Female"
-                    checked={selectedGender === "Female"}
-                    onChange={(e) => setSelectedGender(e.target.value)}
-                  />
-                  <span className="gender-female">Female</span>
-                </label>
-              </div>
-              {/* <p>Selected Gender: {selectedGender}</p>  */}
-            </div>
-
-            {/* Select Gender close */}
-
-            {/* Division selection Start */}
-
-            <div className="form-field">
-              <div className="label-select">
-                <label htmlFor="divisions" className="lbl1">
-                  Select Division
-                </label>
-                <select
-                  name="divisions"
-                  id="divisions"
-                  className="slct"
-                  value={divisionName}
-                  onChange={selecedDivision} // callding selectDivision functin and there i set useState and insert districts Name 
-                >
-                  <option disabled="" selected="">
-                    Select Division
-                  </option>
-                  <option value="Barishal">Barishal</option>
-                  <option value="Chattogram">Chattogram</option>
-                  <option value="Dhaka">Dhaka</option>
-                  <option value="Khulna">Khulna</option>
-                  <option value="Mymensingh">Mymensingh</option>
-                  <option value="Rajshahi">Rajshahi</option>
-                  <option value="Rangpur">Rangpur</option>
-                  <option value="Sylhet">Sylhet</option>
-                </select>
-              </div>
-
-              {/* <p>your selected dividion is :{divisionName}</p> */}
-            </div>
-            {/* Division selection Start */}
-            <div className="form-field">
-              <div className="label-select">
-                <label htmlFor="distr" className="lbl2">
-                  Select District
-                </label>
-                <select
-                  name=""
-                  id="distr"
-                  className="slct"
-                  value={zillaName}
-                  onChange={ selectedZilla}
-                />
-              </div>
-              {/* <p>Your selected zilla is : {zillaName}</p> */}
-              {/*/ Districts Section*/}
-            </div>
-            {/* Upzilla Section start */}
-            <div className="form-field">
-              <div className="label-select">
-                <label htmlFor="polic_sta" className="lbl3">
-                  Select Upzilla{" "}
-                </label>
-                <select name="" className="slct" 
-                id="polic_sta" 
-                value={upZillaName}
-                onChange={selectedUpZilla}
-                />
-              </div>
-{/* <p> your Selected upzilla is : {upZillaName} </p> */}
-              {/* Upzilla Section end */}
-            </div>
-
-            <div id="submit-button">
-              <button className="btn btn-warning" type="button" onClick={next1}>
-                {" "}
-                Next{" "}
-              </button>
-            </div>
-
-            {/* Form Page no One end  */}
-          </form>
-          {/* Form Page no Two start  */}
-          <form className="form-container" id="form-2">
-            <h1 className="text-xl text-red-600 ">
-              {" "}
-              Details of Your Profession and Your Service{" "}
-            </h1>
-
-            <div className="form-wrapper2" id="form-page2">
               <div className="form-field">
-                <label htmlFor="">Your Profession </label>
+                <label htmlFor="name">Name</label>
+                <input
+                  className={`input-fields ${isNameValid ? "" : "invalid"}`}
+                  placeholder="Write Your Full Name "
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    setIsNameValid(true);
+                  }}
+                />
+                {!isNameValid && <p className="error-text">Name is required</p>}
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="mobile">
+                  Mobile{" "}
+                  <span>
+                    (Whatsapp <input type="checkbox" /> ){" "}
+                  </span>{" "}
+                </label>
+                <input
+                  // className="input-fields"
+                  className={`input-fields ${isMobileValid ? "" : "invalid"}`}
+                  placeholder="01....."
+                  type="text"
+                  name="mobile"
+                  value={mobile}
+                  onChange={(e) => {
+                    setMobile(e.target.value);
+                    setIsMobileValid(true); // Reset validation on input change
+                  }}
+                />
+                {!isMobileValid && (
+                  <p className="error-text">Invalid mobile number</p>
+                )}
+              </div>
+
+              <div className="form-field">
+                <label htmlFor="email">Email</label>
+                <input
+                  // className="input-fields"
+                  className={`input-fields ${isEmailValid ? "" : "invalid"}`}
+                  type="email"
+                  id="email"
+                  placeholder="abc...@...com"
+                  name="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setIsEmailValid(true); // Reset validation on input change
+                  }}
+                />
+                {!isEmailValid && (
+                  <p className="error-text">Invalid email address</p>
+                )}
+              </div>
+              <div className="form-field">
+                <label htmlFor="facebookId">
+                  Facebook ID Link{" "}
+                  <span className="text-sm text-black-100">(Optional)</span>{" "}
+                </label>
                 <input
                   className="input-fields"
-                  placeholder="Write your Profesion "
-                  value={profession}
-                  onChange={(e)=>setProfession(e.target.value)} 
-                  list="professions"
+                  type="text"
+                  id=""
+                  placeholder="facebook.com/Naeem"
+                  name="facebookId"
+                  value={facebookId}
+                  onChange={(e) => setFacebookId(e.target.value)}
                 />
-            {/* Profession List Data list calling  */}
-        <datalist id="professions">
-          {  professionList.map((value,index)=>(
-              <option key={index} value={value} />
-            )
-            )}
-            
-        </datalist>
               </div>
 
+              {/* Date of Birth Input  close  */}
               <div className="form-field">
-                <label htmlFor="">Experience From </label>
-                <input className="input-fields"
-                 type="date" id="" 
-                 value={experienceDate}
-                 onChange={(e)=>setExperienceDate(e.target.value)} 
-
-                 />
-              </div>
-              <div className="form-field">
-                <label htmlFor=""> Write about Yourself or Service </label>
-                <textarea
+                <label htmlFor="date_of_birth"> Date of Birth </label>
+                <input
+                  type="date"
                   className="input-fields"
-                  placeholder="Write detais about Your Service "
-                  value={details}
-                  onChange={(e)=>setDetails(e.target.value)} 
+                  name="date_of_birth"
+                  value={dateOfBirth}
+                  onChange={(e) => setDateOfBirth(e.target.value)}
+                />
+              </div>
+              {/* Date of Birth Input  Close  */}
+
+              {/* Select Gender start */}
+
+              <div className="form-field">
+                <label htmlFor="gender">Select Gender</label>
+                <div className="radio-group">
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      name="radio-3"
+                      className="radio radio-secondary"
+                      value="Male"
+                      checked={selectedGender === "Male"}
+                      onChange={(e) => setSelectedGender(e.target.value)}
+                    />
+                    <span className="gender-male">Male</span>
+                  </label>
+                  <label className="radio-label">
+                    <input
+                      type="radio"
+                      name="radio-3"
+                      className="radio radio-secondary"
+                      value="Female"
+                      checked={selectedGender === "Female"}
+                      onChange={(e) => setSelectedGender(e.target.value)}
+                    />
+                    <span className="gender-female">Female</span>
+                  </label>
+                </div>
+                {/* <p>Selected Gender: {selectedGender}</p>  */}
+              </div>
+
+              {/* Select Gender close */}
+
+              {/* Division selection Start */}
+
+              <div className="form-field">
+                <div className="label-select">
+                  <label htmlFor="divisions" className="lbl1">
+                    Select Division
+                  </label>
+                  <select
+                    name="divisions"
+                    id="divisions"
+                    className={`slct ${isDivisionValid ? "" : "invalid"}`}
+                    value={divisionName}
+                    onChange= {
+                      selecedDivision
+                    
+                    }// callding selectDivision functin and there i set useState and insert districts Name
+                  >
+                    <option disabled="" selected="">
+                      Select Division
+                    </option>
+                    <option value="Barishal">Barishal</option>
+                    <option value="Chattogram">Chattogram</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Khulna">Khulna</option>
+                    <option value="Mymensingh">Mymensingh</option>
+                    <option value="Rajshahi">Rajshahi</option>
+                    <option value="Rangpur">Rangpur</option>
+                    <option value="Sylhet">Sylhet</option>
+                  </select>
+                </div>
+                {!isDivisionValid && (
+                  <p className="error-text">Please select a division</p>
+                )}
+                {/* <p>your selected dividion is :{divisionName}</p> */}
+              </div>
+              {/* Division selection Start */}
+              <div className="form-field">
+                <div className="label-select">
+                  <label htmlFor="distr" className="lbl2">
+                    Select District
+                  </label>
+                  <select
+                    name="distr"
+                    id="distr"
+                    className={`slct ${isDistrictValid ? "" : "invalid"}`}
+                    value={zillaName}
+                    onChange={selectedZilla}
+                  />
+                </div>
+                {!isDistrictValid && (
+                  <p className="error-text">Please select a district</p>
+                )}
+                {/* <p>Your selected zilla is : {zillaName}</p> */}
+                {/*/ Districts Section*/}
+              </div>
+              {/* Upzilla Section start */}
+              <div className="form-field">
+                <div className="label-select">
+                  <label htmlFor="polic_sta" className="lbl3">
+                    Select Upzilla{" "}
+                  </label>
+                  <select
+                    name="polic_sta"
+                    className={`slct ${isUpZillaValid ? "" : "invalid"}`}
+                    id="polic_sta"
+                    value={upZillaName}
+                    onChange={selectedUpZilla}
+                  />
+                </div>
+                {!isUpZillaValid && (
+                  <p className="error-text">Please select an upzilla</p>
+                )}
+                {/* <p> your Selected upzilla is : {upZillaName} </p> */}
+                {/* Upzilla Section end */}
+              </div>
+
+              <div id="submit-button">
+                <button
+                  className="btn btn-warning"
+                  type="button"
+                  onClick={next1}
+                >
+                  {" "}
+                  Next{" "}
+                </button>
+              </div>
+
+              {/* Form Page no One end  */}
+            </form>
+            {/* Form Page no Two start  */}
+            <form className="form-container" id="form-2">
+              <h1 className="text-sm text-center mb-1 text-red-600 ">
+                {" "}
+                Details of Your Profession and Your Service{" "}
+              </h1>
+
+              <div className="form-wrapper2" id="form-page2">
+                <div className="form-field">
+                  <label htmlFor="">Your Profession </label>
+                  <input
+                     className={`input-fields ${isProfessionValid ? '' : 'invalid'}`}
+                    placeholder="Write your Profesion "
+                    value={profession}
+                    onChange={(e) => {
+                      setProfession(e.target.value);
+                      setIsProfessionValid(true); // Reset validation on input change 
+                    }}
+                    list="professions"
+                  />
+                   {!isProfessionValid && <p className="error-text">Profession is required</p>}
+                  {/* Profession List Data list calling  */}
+                  <datalist id="professions">
+                    {professionList.map((value, index) => (
+                      <option key={index} value={value} />
+                    ))}
+                  </datalist>
+                </div>
+
+                <div className="form-field">
+                  <label htmlFor="">Experience From </label>
+                  <input
+                    className="input-fields"
+                    type="date"
+                    id=""
+                    value={experienceDate}
+                    onChange={(e) => setExperienceDate(e.target.value)}
+                  />
+                </div>
+                <div className="form-field">
+                  <label htmlFor=""> Write about Yourself or Service </label>
+                  <textarea
+                    className="input-fields"
+                    placeholder="Write detais about Your Service "
+                    value={details}
+                    onChange={(e) => setDetails(e.target.value)}
+                  />
+                </div>
+
+                <button
+                  className="btn btn-success"
+                  type="button"
+                  onClick={prev1}
+                >
+                  {" "}
+                  Previous{" "}
+                </button>
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  onClick={next2}
+                >
+                  {" "}
+                  Next{" "}
+                </button>
+              </div>
+
+              {/* Form Page no Two  End   */}
+            </form>
+            {/* Form Page no Three start  */}
+            <form
+              action=""
+              className="form-container"
+              id="form-3"
+              onSubmit={handleSubmit}
+            >
+              {/* Password starts  */}
+              <div className="form-field">
+                <label htmlFor="password">Password</label>
+                <input
+                  className="input-fields"
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
 
-              <button className="btn btn-success" type="button" onClick={prev1}>
+              <div className="form-field">
+                <label htmlFor="reEnterPassword">Re-enter Password</label>
+                <input
+                  className={`input-fields ${isPasswordMatch ? '' : 'invalid'}`}
+                  type="password"
+                  id="reEnterPassword"
+                  value={reEnterPassword}
+                  onChange={(e) => setReEnterPassword(e.target.value)}
+                />
+                 {!isPasswordMatch && <p className="error-text">Passwords do not match</p>}
+              </div>
+              {/* Password end */}
+              <button className="btn btn-success" type="button" onClick={prev2}>
                 {" "}
                 Previous{" "}
               </button>
-              <button className="btn btn-primary" type="button" onClick={next2}>
-                {" "}
-                Next{" "}
+              <button
+                className="btn btn-primary"
+                type="submit"
+                onClick={popShow}
+              >
+                {/* onClick={popShow} */} Submit{" "}
               </button>
-            </div>
+            </form>
 
-            {/* Form Page no Two  End   */}
-          </form>
-          {/* Form Page no Three start  */}
-          <form action="" className="form-container" id="form-3" onSubmit={handleSubmit}>
-            {/* Password starts  */}
-            <div className="form-field">
-              <label htmlFor="password">Password</label>
-              <input className="input-fields"
-               type="password" 
-               id="password" 
-               value={password}
-               onChange={(e)=>setPassword(e.target.value)} 
-               />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="reEnterPassword">Re-enter Password</label>
-              <input
-                className="input-fields"
-                type="password"
-                id="reEnterPassword"
-                value={reEnterPassword}
-                onChange={(e)=>setReEnterPassword(e.target.value)} 
-              />
-            </div>
-            {/* Password end */}
-            <button className="btn btn-success" type="button" onClick={prev2}>
-              {" "}
-              Previous{" "}
-            </button>
-            <button className="btn btn-primary" type="submit"  onClick={popShow} >
-              {/* onClick={popShow} */}
-              {" "}
-              Submit{" "}
-            </button>
-          </form>
-
-          {/* Form Page no Three   End   */}
+            {/* Form Page no Three   End   */}
+          </div>
         </div>
-      </div>
 
-      <div className="PopUp" id="PopUp">
+        <div className="PopUp" id="PopUp">
           <img src="./images/tick.png" alt="" srcset="" />
-          <h1> Thank You <br /> <span className=" text-green-600 font-serif italic font-bold"> {name} </span> </h1>
-          <p>Your Registration is completed Successfully for <br /> 
-          <span className="text-green-600 font-serif font-bold"> {profession} </span>  </p>
+          <h1>
+            {" "}
+            Thank You <br />{" "}
+            <span className=" text-green-600 font-serif italic font-bold">
+              {" "}
+              {name}{" "}
+            </span>{" "}
+          </h1>
+          <p>
+            Your Registration is completed Successfully for <br />
+            <span className="text-green-600 font-serif font-bold">
+              {" "}
+              {profession}{" "}
+            </span>{" "}
+          </p>
           <button className="btn" onClick={popRemove}>
             {" "}
             OK{" "}
           </button>
         </div>
-   
-{/* <button onClick={popShow}> Pop Show callng </button> */}
-   
-   
-   </div>
-   
-    
+
+        {/* <button onClick={popShow}> Pop Show callng </button> */}
+      </div>
     </Layout>
   );
 };

@@ -197,3 +197,9 @@
   left: 450px ;
  }
  
+.error-text{
+  color:red;
+}
+.invalid{
+  border: 3px solid red ;
+}
